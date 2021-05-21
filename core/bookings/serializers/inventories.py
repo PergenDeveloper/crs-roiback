@@ -6,7 +6,6 @@ from core.bookings.models import Rate, Inventory
 class InventorySerializer(serializers.ModelSerializer):
     id = serializers.UUIDField(
         source='uuid',
-        format='hex',
         read_only=True
     )
     rate = serializers.SlugRelatedField(

@@ -50,6 +50,10 @@ que se encuentran en el fichero `config/settings/production.txt`
 El paquete `djangorestframework` nos ofrece una interfaz cómoda para gestionar los datos
 mediante el navegador.
 
+También he habilitado la documentación de la API mediante `Swagger` en 
+entornos de desarrollo, en la siguiente dirección:
+> `127.0.0.1:8000`
+
 A continuación vamos a especificar los diferentes servicios:
 
 ### HOTELES

@@ -42,7 +42,7 @@ Eg: dominio.es,mi.dominio.com
 `SQLITE3_FILEPATH`: En este caso sería el path del fichero .sqlite3
 
 También es necesario tener especial atención a las variables de seguridad
-que se encuentran en el fichero `config/settings/production.txt`
+que se encuentran en el fichero `config/settings/production.py`
 
 
 ## API REST ENDPOINTS

@@ -111,3 +111,8 @@ Introducir en el navegador `127.0.0.1:8000/api/inventories/`
 | `/api/inventories/<inventory_id>/`   | `DELETE`        |  Eliminar un inventario |
 
 - NOTA: Al campo rate se le pasa el código de la tarifa
+
+### CONSULTAR DISPONIBILIDAD
+| Endpoint      | HTTP METHOD | Descripción | 
+| ----------- | ----------- | ----------- | 
+| `/api/availability/<hotel_code>/<checkin_date>/<checkout_date>` | `GET`  |  Consultar disponibilidad en hotel

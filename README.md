@@ -21,6 +21,9 @@ Este proyecto implementa la prueba backend de Roiback
 #### Aplicar las migraciones
 > `python manage.py migrate`
 
+#### Lanzamos los tests
+> `pytest`
+
 #### Ejecutar el proyecto
 > `python manage.py runserver`
 
@@ -116,3 +119,12 @@ Introducir en el navegador `127.0.0.1:8000/api/inventories/`
 | Endpoint      | HTTP METHOD | Descripción | 
 | ----------- | ----------- | ----------- | 
 | `/api/availability/<hotel_code>/<checkin_date>/<checkout_date>` | `GET`  |  Consultar disponibilidad en hotel
+
+## ACCIONES PRE-COMMIT
+
+Antes realizar cualquier commit es necesario ejecutar los siguientes comandos, y asegurarnos
+que ninguno generar WARNINGS o ERRORES
+
+> `flake8`: Nos aseguramos que nuestro código está limpio
+> 
+> `pytest`: Ejecutamos todos los tests

@@ -12,7 +12,9 @@ class HotelListCreateAPIView(generics.ListCreateAPIView):
     def list(self, request, *args, **kwargs):
         hotel_ids = self.queryset.values_list('code', flat=True)
         return Response(
-            data=hotel_ids, status=status.HTTP_200_OK
+            data={
+                "hotels": hotel_ids
+            }, status=status.HTTP_200_OK
         )
 
 

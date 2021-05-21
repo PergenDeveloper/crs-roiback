@@ -1,28 +1,18 @@
-from datetime import datetime
 from itertools import groupby
 from decimal import Decimal
 
-from rest_framework import generics, status
+from rest_framework import status
 from rest_framework.response import Response
-
+from rest_framework.views import APIView
 
 from core.bookings.models import Inventory
 
 
-class AvailabilityRetrieveAPIView(generics.RetrieveAPIView):
+class AvailabilityAPIView(APIView):
 
     def get(self, request, *args, **kwargs):
         data = self.get_available_rooms()
         return Response(data=data, status=status.HTTP_200_OK)
-
-    def valid_date(self, name):
-        date_format = "%Y-%m-%d"
-        try:
-            datetime.strptime(self.kwargs.get(name), date_format)
-        except ValueError:
-            Response(data={
-                name: "It should be a valid date"
-            }, status=status.HTTP_400_BAD_REQUEST)
 
     def get_queryset(self):
         queryset = Inventory.objects.select_related('rate__room').filter(
@@ -34,7 +24,7 @@ class AvailabilityRetrieveAPIView(generics.RetrieveAPIView):
         return queryset
 
     def get_available_rooms(self):
-        data, rooms = {}, []
+        rooms = []
         queryset = self.get_queryset()
         for room_code, group_by_room in groupby(queryset, lambda x: x.rate.room.code):
             rates = self.get_rates_per_room(group_by_room)
@@ -62,7 +52,7 @@ class AvailabilityRetrieveAPIView(generics.RetrieveAPIView):
         return rates
 
     def get_inventories_and_total_price_per_rate(self, group):
-        inventories, total_price = {}, Decimal(0.0)
+        inventories, total_price = {}, Decimal()
         for item in group:
             total_price += item.price
             inventories[str(item.date)] = {
@@ -70,4 +60,3 @@ class AvailabilityRetrieveAPIView(generics.RetrieveAPIView):
                 "allotment": item.allotment
             }
         return inventories, total_price
-

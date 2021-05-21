@@ -16,7 +16,7 @@ urlpatterns = [
     path('rooms/', room_views.RoomListCreateAPIView.as_view(), name='room-list-create'),
     path('rooms/<str:code>/',
          room_views.RoomRetrieveUpdateDestroyAPIView.as_view(),
-         name='hotel-retrieve-update-destroy'),
+         name='room-retrieve-update-destroy'),
 
     # Rates urls
     path('rates/', rate_views.RateListCreateAPIView.as_view(), name='rate-list-create'),
@@ -25,17 +25,17 @@ urlpatterns = [
          name='rate-retrieve-update-destroy'),
 
     # Inventory urls
-    path('inventories/', inventory_views.InventoryListCreateAPIView.as_view(), name='rate-list-create'),
+    path('inventories/', inventory_views.InventoryListCreateAPIView.as_view(), name='inventory-list-create'),
     path('inventories/<str:uuid>/',
          inventory_views.InventoryRetrieveUpdateDestroyAPIView.as_view(),
-         name='rate-retrieve-update-destroy'),
+         name='inventory-retrieve-update-destroy'),
 
     # Commons urls
     re_path(
         r'^availability/(?P<hotel_code>\w+)/'
         r'(?P<checkin_date>\d{4}-\d{2}-\d{2})/'
         r'(?P<checkout_date>\d{4}-\d{2}-\d{2})/$',
-        commons_views.AvailabilityRetrieveAPIView.as_view(),
-        name='availability-list'
+        commons_views.AvailabilityAPIView.as_view(),
+        name='availability'
     )
 ]

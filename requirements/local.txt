@@ -1,0 +1,7 @@
+-r base.txt
+
+# lint packages
+flake8==3.9.2
+
+# tests packages
+pytest-django==4.3.0

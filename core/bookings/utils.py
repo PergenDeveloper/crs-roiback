@@ -9,6 +9,5 @@ def raise_404_if_empty(func):
         queryset = func(self)
         if queryset:
             return queryset
-        else:
-            raise Http404
+        raise Http404
     return func_wrapper

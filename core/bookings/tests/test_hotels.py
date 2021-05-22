@@ -19,7 +19,7 @@ def test_unique_code_in_hotel(client):
 
 
 @pytest.mark.django_db
-def test_check_hotel_name_in_list(client):
+def test_hotel_name_in_list(client):
     hotel = Hotel.objects.create(code="hotel_1", name="Hotel 1")
 
     url = reverse('hotel-list-create')

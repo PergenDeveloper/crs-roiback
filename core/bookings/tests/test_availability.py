@@ -6,7 +6,7 @@ from core.bookings.models import Hotel, Room, Rate, Inventory
 
 
 @pytest.mark.django_db
-def test_not_availability_between_dates(client):
+def test_availability_not_found_between_dates(client):
     hotel = Hotel.objects.create(
         code="hotel_1",
         name="Hotel 1"
@@ -34,13 +34,12 @@ def test_not_availability_between_dates(client):
         "checkout_date": "2021-03-22"
     })
     response = client.get(url)
-    data = response.json()
 
-    assert data["rooms"] == []
+    assert response.status_code == 404
 
 
 @pytest.mark.django_db
-def test_not_availability_in_hotel(client):
+def test_availability_not_found_in_hotel(client):
     hotel_1 = Hotel.objects.create(
         code="hotel_1",
         name="Hotel 1"
@@ -73,9 +72,8 @@ def test_not_availability_in_hotel(client):
         "checkout_date": "2021-05-25"
     })
     response = client.get(url)
-    data = response.json()
 
-    assert data["rooms"] == []
+    assert response.status_code == 404
 
 
 @pytest.mark.django_db

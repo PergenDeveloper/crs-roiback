@@ -42,20 +42,21 @@ la encriptación
 `ALLOWED_HOSTS`: Los hosts o dominios están separados por comas. 
 Eg: dominio.es,mi.dominio.com
 
-`SQLITE3_FILEPATH`: En este caso sería el path del fichero .sqlite3
+`SQLITE3_FILEPATH`: En este caso sería el path del fichero *.sqlite3
 
-También es necesario tener especial atención a las variables de seguridad
+También es necesario tener especial atención a las configuraciones de seguridad
 que se encuentran en el fichero `config/settings/production.py`
 
 
-## API REST ENDPOINTS
+## API REST
 
-El paquete `djangorestframework` nos ofrece una interfaz cómoda para gestionar los datos
-mediante el navegador.
-
-También he habilitado la documentación de la API mediante `Swagger` en 
+Se ha habilitado la documentación de la API mediante `Swagger` en 
 entornos de desarrollo, en la siguiente dirección:
 > `127.0.0.1:8000`
+
+
+Por otra parte, el paquete `djangorestframework` nos ofrece una interfaz cómoda para gestionar los datos
+mediante el navegador.
 
 A continuación vamos a especificar los diferentes servicios:
 
@@ -107,10 +108,10 @@ Introducir en el navegador `127.0.0.1:8000/api/inventories/`
 
 | Endpoint      | HTTP METHOD | Descripción | Campos
 | ----------- | ----------- | ----------- | -----------
-| `/api/inventories/`      | `POST`       |  Crear un inventario | rate, code, name
+| `/api/inventories/`      | `POST`       |  Crear un inventario | rate, date, price, allotment
 | `/api/inventories/`   | `GET`        |  Obtener lista de inventarios |
 | `/api/inventories/<inventory_id>/`   | `GET`        |  Obtener los detalles de un inventario |
-| `/api/inventories/<inventory_id>/`   | `PUT / PATCH`       |  Modificar datos del inventario | rate, code, name
+| `/api/inventories/<inventory_id>/` | `PUT / PATCH` | Modificar datos del inventario | rate, date, price, allotment
 | `/api/inventories/<inventory_id>/`   | `DELETE`        |  Eliminar un inventario |
 
 - NOTA: Al campo rate se le pasa el código de la tarifa
@@ -122,9 +123,9 @@ Introducir en el navegador `127.0.0.1:8000/api/inventories/`
 
 ## ACCIONES PRE-COMMIT
 
-Antes realizar cualquier commit es necesario ejecutar los siguientes comandos, y asegurarnos
-que ninguno generar WARNINGS o ERRORES
+Antes realizar cualquier commit en el código es necesario ejecutar los siguientes comandos, y asegurarnos
+que ninguno genera WARNINGS o ERRORS
 
 > `flake8`: Nos aseguramos que nuestro código está limpio
 > 
-> `pytest`: Ejecutamos todos los tests
+> `pytest`: Ejecutamos todos los tests implementados
